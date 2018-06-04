@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LaravelAdminMysql.App" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.EMailPhoneValidationRule" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAACAAAQAAAAAAAAEAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>EMailPhoneValidationRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.FormContact" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAABAAAAgAAAAABAABAAAAAAAEAQA=</HashCode>
+      <FileName>Forms\FormContact.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.FormProject" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAABAAAAgAAAgAAAABAAAAAAAEAAA=</HashCode>
+      <FileName>Forms\FormProject.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.FormRole" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAABAAABgAAAAAAAABAAAAAAAEAAA=</HashCode>
+      <FileName>Forms\FormRole.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.FormTask" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAABAAAAgAAAgAAAABAAAAAABEAAA=</HashCode>
+      <FileName>Forms\FormTask.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.FormUser" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABDAgAAAAAAEAEAABAAAAAAAAAAAAABAEAAAAAEEQA=</HashCode>
+      <FileName>Forms\FormUser.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.FTPLoader" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FTPLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAQAEAAEAAgECsBaAChAAAhDAgABAAgAAAABCJA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.sql3238345Entities" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAABAAQAAAEAAAAAAAQCAAIAFAABAAiAQAABAFAAAAA=</HashCode>
+      <FileName>MyModel.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.contact" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAgAAAAAAAAABACAAAAAAAAAAAwA=</HashCode>
+      <FileName>contact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.contact_types" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>contact_types.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.migration" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAgA=</HashCode>
+      <FileName>migration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.password_resets" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>password_resets.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.permission" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAACAAAAACAEAAAAAACAAAAAAgA=</HashCode>
+      <FileName>permission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.project" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAAAAAAAAAIAAAAAAAECAEAAgAAACAAAAAAwA=</HashCode>
+      <FileName>project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.project_technology" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAASAACgAAAAAAACAAAAAAQA=</HashCode>
+      <FileName>project_technology.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.role" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAIAAAAAAAACAEAAAAAACAABAAAgA=</HashCode>
+      <FileName>role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.task" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAACAAEAAAAgIAAAAAAABCgEAAAAQACAAAAAAwA=</HashCode>
+      <FileName>task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.task_comment" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAAAAAAIAAAAAAAACAAAAAAAACAAABAAgA=</HashCode>
+      <FileName>task_comment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.task_file" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAACAAAAACAEAAAAAACAAABAAgA=</HashCode>
+      <FileName>task_file.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.task_technology" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAASAACAAAAAAAACAAABAAAA=</HashCode>
+      <FileName>task_technology.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.task_user" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAACAAAAAAIACAAAAAAQA=</HashCode>
+      <FileName>task_user.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.technology" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAIAAAAAAABCAEAAgAAACAAAAAAgA=</HashCode>
+      <FileName>technology.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.user">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAQAAAAAAAAgAAACAAIAECAEAAAQAACBAkAAAgA=</HashCode>
+      <FileName>user.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.user_comment" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAAAAAAAAAAAAAAACAAAAAAAACAAAAAAwA=</HashCode>
+      <FileName>user_comment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.Resource" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAgAAAAAAAABEAAAAQAAAEAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.StringRangeValidationRule" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAACAAAAAABAAAAAEAAAEAAAQAAAAAQAAAAA=</HashCode>
+      <FileName>StringRangeValidationRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.Forms.FormAddRoleForUser" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Forms\FormAddRoleForUser.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.Forms.FormAddUserForRole" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\FormAddUserForRole.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LaravelAdminMysql.Properties.Resources" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaravelAdminMysql.Properties.Settings" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

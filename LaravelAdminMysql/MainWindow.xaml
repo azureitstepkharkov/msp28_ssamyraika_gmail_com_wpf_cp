@@ -1,0 +1,289 @@
+﻿<Window x:Class="LaravelAdminMysql.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaravelAdminMysql"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="925" Loaded="Window_Loaded">
+    <Window.Resources>
+
+        <RoutedUICommand x:Key="FirstCommand" Text="First"/>
+        <RoutedUICommand x:Key="LastCommand" Text="Last"/>
+        <RoutedUICommand x:Key="NextCommand" Text="Next"/>
+        <RoutedUICommand x:Key="PreviousCommand" Text="Previous"/>
+        <Style x:Key="NavButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+            <Setter Property="Margin" Value="2,2,2,0"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="auto"/>
+        </Style>
+        <CollectionViewSource x:Key="projectViewSource" d:DesignSource="{d:DesignInstance {x:Type local:project}, CreateList=True}"/>
+        <CollectionViewSource x:Key="roleViewSource" d:DesignSource="{d:DesignInstance {x:Type local:role}, CreateList=True}"/>
+        <CollectionViewSource x:Key="userViewSource" d:DesignSource="{d:DesignInstance {x:Type local:user}, CreateList=True}"/>
+        
+        <CollectionViewSource x:Key="roleusersViewSource" Source="{Binding users, Source={StaticResource roleViewSource}}"/>
+        <CollectionViewSource x:Key="projecttasksViewSource" Source="{Binding tasks, Source={StaticResource projectViewSource}}"/>
+        <CollectionViewSource x:Key="usercontactsViewSource" Source="{Binding contacts, Source={StaticResource userViewSource}}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource FirstCommand}" Executed="FirstCommandHandler"/>
+        <CommandBinding Command="{StaticResource LastCommand}" Executed="LastCommandHandler"/>
+        <CommandBinding Command="{StaticResource NextCommand}" Executed="NextCommandHandler"/>
+        <CommandBinding Command="{StaticResource PreviousCommand}" Executed="PreviousCommandHandler"/>
+    </Window.CommandBindings>
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Name="StackPanelFormLogin" Visibility="Visible">
+        <TextBlock HorizontalAlignment="Center">Hello!</TextBlock>
+        <TextBlock HorizontalAlignment="Center">You need login:</TextBlock>
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Margin="5">EMail:</Label>
+                <TextBox Grid.Column="1" Grid.Row="0" Width="200" Margin="5" Name="TextBoxEmailLogin"></TextBox>
+                <Label Grid.Column="0" Grid.Row="1" Margin="5">Password:</Label>
+                <PasswordBox Grid.Column="1" Grid.Row="1" Width="200" Margin="5" Name="TextBoxPasswordLogin"></PasswordBox>
+            </Grid>
+            <Button Width="80" Name="ButtonLogin" Click="ButtonLogin_Click">Login</Button>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="109*"/>
+            </Grid.ColumnDefinitions>
+            <TabControl TabStripPlacement="Left" Margin="10" BorderBrush="Gainsboro" SelectedIndex="{Binding Mode=OneWay}" Grid.ColumnSpan="2" Name="TabControlWithData" Visibility="Hidden">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Users">
+                <Grid DataContext="{StaticResource userViewSource}">
+                    <StackPanel>
+                    <StackPanel  Name="NavigationUsers" Orientation="Horizontal" Margin="5" Height="36" VerticalAlignment="Top" Background="Gainsboro">
+                        <Button Content="|◄" Command="{StaticResource FirstCommand}" Style="{StaticResource NavButton}"  />
+                        <Button Content="◄" Command="{StaticResource PreviousCommand}" Style="{StaticResource NavButton}"/>
+                        <Button Content="►" Command="{StaticResource NextCommand}"     Style="{StaticResource NavButton}"/>
+                        <Button Content="►|" Command="{StaticResource LastCommand}" Style="{StaticResource NavButton}"/>
+                        <Button  Name="btnNewUser"   Content="New User" Click="btnNewUser_Click" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+                        <Button Content="New Contact" Name="btnNewContact" FontSize="11" Width="80" Style="{StaticResource NavButton}" Click="btnNewContact_Click"/>
+                    </StackPanel>
+                    <TextBlock Margin="5">Users:</TextBlock>
+                    <DataGrid x:Name="userDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="200" ItemsSource="{Binding}"  RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnDeleteUser" Content="Delete" Click="btnDeleteUser_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnUpdateUser" Content="Update" Click="btnUpdateUser_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="idColumn" Binding="{Binding id}" Header="id" Width="Auto"/>
+                            <DataGridTextColumn x:Name="nameColumn" Binding="{Binding name}" Header="name" Width="Auto"/>
+                            <DataGridTextColumn x:Name="emailColumn" Binding="{Binding email}" Header="email" Width="Auto"/>
+                            <DataGridTextColumn x:Name="imageCol" Binding="{Binding image}" Header="image" Width="Auto"/>
+                                <DataGridTextColumn x:Name="passwordColumn" Binding="{Binding password}" Header="password" Width="Auto"/>
+                            <DataGridTextColumn x:Name="statusColumn3" Binding="{Binding status}" Header="status" Width="Auto"/>
+                            <DataGridTextColumn x:Name="updated_atColumn3"   Header="updated at" Width="Auto" Binding="{Binding created_at}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Margin="5">Контакты:</TextBlock>
+                    <DataGrid x:Name="contactsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="200" ItemsSource="{Binding Source={StaticResource usercontactsViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnDeleteContact" Content="Delete" Click="btnDeleteContact_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnUpdateContact" Content="Update" Click="btnUpdateContact_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                                <DataGridTextColumn x:Name="contact_typesColumn" Binding="{Binding contact_types.contact_type}" Header="contact types" Width="Auto"/>
+                            <DataGridTextColumn x:Name="idColumn4" Binding="{Binding id}" Header="id" Width="Auto"/>
+                            <DataGridTextColumn x:Name="type_idColumn" Binding="{Binding type_id}" Header="type id" Width="Auto"/>
+                            <DataGridTextColumn x:Name="user_idColumn" Binding="{Binding user_id}" Header="user id" Width="Auto"/>
+                            <DataGridTextColumn x:Name="valueColumn" Binding="{Binding value}" Header="value" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Project" >
+                <Grid DataContext="{StaticResource projectViewSource}">
+                    <StackPanel>
+                        <StackPanel Name="NavigationProjects"  Orientation="Horizontal" Margin="5" Height="36" VerticalAlignment="Top" Background="Gainsboro" DataContext="{StaticResource projectViewSource}">
+                            <Button Content="|◄" Command="{StaticResource FirstCommand}" Style="{StaticResource NavButton}"  />
+                            <Button Content="◄" Command="{StaticResource PreviousCommand}" Style="{StaticResource NavButton}"/>
+                            <Button  Content="►" Command="{StaticResource NextCommand}"     Style="{StaticResource NavButton}"/>
+                            <Button  Content="►|" Command="{StaticResource LastCommand}" Style="{StaticResource NavButton}"/>
+                            <Button  Name="btnNewProjet"   Content="New Project"  Click="btnNewProjet_Click" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+                            <Button Content="New Task" Name="btnNewTask" FontSize="11" Width="80" Style="{StaticResource NavButton}" Click="btnNewTask_Click"/>
+                        </StackPanel>
+                        <TextBlock>Проекты: </TextBlock>
+                        <DataGrid x:Name="projectDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" Height="200">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnDeleteProject" Content="Delete" Click="btnDeleteProject_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnUpdateProject" Content="Update" Click="btnUpdateProject_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn x:Name="projectId" Binding="{Binding id}" Header="Project ID" Width="Auto"/>
+                                <DataGridTextColumn x:Name="nameProject" Binding="{Binding name}" Header="Name Project" Width="Auto"/>
+                                <DataGridTextColumn x:Name="clients_idAuthor" Binding="{Binding clients_id}" Header="Clients ID (Author)" Width="Auto"/>
+                                <DataGridTextColumn x:Name="clients_nameAuthor" Binding="{Binding user.name}" Header="Clients name (Author)" Width="Auto"/>
+                                <DataGridTextColumn x:Name="descriptionProject" Binding="{Binding description}" Header="Description" Width="100"/>
+                                <DataGridTextColumn x:Name="status" Binding="{Binding status}" Header="Status" Width="Auto"/>
+                                <DataGridTextColumn x:Name="created_atColumn" Header="created at" Width="Auto" Binding="{Binding created_at}"/>
+                                <DataGridTextColumn x:Name="updated_atColumn" Header="updated at" Width="Auto" Binding="{Binding updated_at}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock>Задачи:</TextBlock>
+                        <DataGrid x:Name="tasksDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource projecttasksViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" Height="200">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnDeleteTask" Content="Delete" Click="btnDeleteTask_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnUpdateTask" Content="Update" Click="btnUpdateTask_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn x:Name="taskID" Binding="{Binding id}" Header="Task ID" Width="Auto"/>
+                                <DataGridTextColumn x:Name="taskName" Binding="{Binding name}" Header="Task name" Width="Auto"/>
+                                <DataGridTextColumn x:Name="taskDescription" Binding="{Binding description}" Header="Description" Width="100"/>
+                                <DataGridTextColumn x:Name="startTask" Header="Start Task" Width="Auto" Binding="{Binding start}"/>
+                                <DataGridTextColumn x:Name="endTask" Header="End Task" Width="Auto" Binding="{Binding end}"/>
+                                <DataGridTextColumn x:Name="taskProject_id" Binding="{Binding project_id}" Header="Project id" Width="Auto"/>
+                                <DataGridTextColumn x:Name="taskProject_idName" Binding="{Binding project.name}" Header="Project name" Width="Auto"/>
+                                <DataGridTextColumn x:Name="statusColumn2" Binding="{Binding status}" Header="Status" Width="Auto"/>
+                                <DataGridTextColumn x:Name="taskCreated_at" Header="created at" Width="Auto" Binding="{Binding created_at}"/>
+                                <DataGridTextColumn x:Name="updated_atColumn2" Header="updated at" Width="Auto" Binding="{Binding updated_at}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Roles" >
+                <Grid DataContext="{StaticResource roleViewSource}">
+                    <StackPanel>
+                        <StackPanel Name="NavigationRoles"  Orientation="Horizontal" Margin="5" Height="36" VerticalAlignment="Top" Background="Gainsboro" DataContext="{StaticResource projectViewSource}">
+                            <Button Content="|◄" Command="{StaticResource FirstCommand}" Style="{StaticResource NavButton}"  />
+                            <Button Content="◄" Command="{StaticResource PreviousCommand}" Style="{StaticResource NavButton}"/>
+                            <Button  Content="►" Command="{StaticResource NextCommand}"     Style="{StaticResource NavButton}"/>
+                            <Button  Content="►|" Command="{StaticResource LastCommand}" Style="{StaticResource NavButton}"/>
+                            <Button  Name="btnNewRole"   Content="New Role"  Click="btnNewRole_Click" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+                            <Button Content="Add User Role" Name="btnAddUserRole" FontSize="11" Width="80" Style="{StaticResource NavButton}" Click="btnAddUserRole_Click"/>
+                        </StackPanel>
+                        <TextBlock>Роли пользователей:</TextBlock>
+                        <DataGrid x:Name="roleDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" Height="200">
+                        <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnDeleteRole" Content="Delete" Click="btnDeleteRole_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnUpdateRole" Content="Update" Click="btnUpdateRole_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                    <DataGridTextColumn x:Name="created_at1" Binding="{Binding created_at}" Header="created at" Width="Auto"/>
+                                    <DataGridTextColumn x:Name="idRole" Binding="{Binding id}" Header="Role id" Width="Auto"/>
+                                <DataGridTextColumn x:Name="nameRole" Binding="{Binding name}" Header="Role Name" Width="Auto"/>
+                                <DataGridTextColumn x:Name="descriptionRole" Binding="{Binding description}" Header="description" Width="Auto"/>
+                            <DataGridTextColumn x:Name="display_nameColumn" Binding="{Binding display_name}" Header="display name" Width="Auto"/>
+                                    <DataGridTextColumn x:Name="updated_atColumn1" Binding="{Binding updated_at}" Header="updated at" Width="Auto"/>
+                                </DataGrid.Columns>
+                    </DataGrid>
+                        <TextBlock> Пользователи c такими ролями:</TextBlock>
+                        <DataGrid x:Name="usersDataGrid1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource roleusersViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" Height="200">
+                        <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnDeleteThisRoleFromUser" Content="Delete this Role" Click="btnDeleteThisRoleFromUser_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnAddOtherRoleForThisUser" Content="Add Other Role" Click="btnAddOtherRoleForThisUser_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                    <DataGridTextColumn x:Name="created_atColumn2" Binding="{Binding created_at}" Header="created at" Width="Auto"/>
+                                    <DataGridTextColumn x:Name="emailColumn1" Binding="{Binding email}" Header="email" Width="Auto"/>
+                            <DataGridTextColumn x:Name="idColumn3" Binding="{Binding id}" Header="id" Width="Auto"/>
+                            <DataGridTextColumn x:Name="imageColumn" Binding="{Binding image}" Header="image" Width="Auto"/>
+                            <DataGridTextColumn x:Name="nameColumn3" Binding="{Binding name}" Header="name" Width="Auto"/>
+                                    <DataGridTextColumn x:Name="passwordColumn1" Binding="{Binding password}" Header="password" Width="Auto"/>
+                                    <DataGridTextColumn x:Name="statusColumn1" Binding="{Binding status}" Header="status" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        </Grid>
+    </Grid>
+</Window>

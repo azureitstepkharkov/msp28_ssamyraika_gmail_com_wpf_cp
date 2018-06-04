@@ -1,0 +1,1299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sql3238345Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="contact_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contact_type" Type="varchar" MaxLength="191" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contacts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_id" Type="uint" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="user_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="migrations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="migration" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="batch" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.sql3238345.password_resets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="password_resets">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="token" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="permission_role">
+          <Key>
+            <PropertyRef Name="permission_id" />
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="permission_id" Type="uint" Nullable="false" />
+          <Property Name="role_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permissions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="display_name" Type="varchar" MaxLength="191" />
+          <Property Name="description" Type="varchar" MaxLength="191" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="project_technology">
+          <Key>
+            <PropertyRef Name="id_project" />
+            <PropertyRef Name="id_technology" />
+          </Key>
+          <Property Name="id_project" Type="uint" Nullable="false" />
+          <Property Name="id_technology" Type="uint" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="project_user">
+          <Key>
+            <PropertyRef Name="id_project" />
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_project" Type="uint" Nullable="false" />
+          <Property Name="id_user" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="projects">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="clients_id" Type="uint" Nullable="false" />
+          <Property Name="status" Type="enum" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="role_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="user_id" Type="uint" Nullable="false" />
+          <Property Name="role_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="display_name" Type="varchar" MaxLength="191" />
+          <Property Name="description" Type="varchar" MaxLength="191" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="task_comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="task_id" Type="uint" Nullable="false" />
+          <Property Name="comment" Type="text" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="task_file">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="task_id" Type="uint" Nullable="false" />
+          <Property Name="path" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+          <Property Name="name" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="task_technology">
+          <Key>
+            <PropertyRef Name="id_task" />
+            <PropertyRef Name="id_technology" />
+          </Key>
+          <Property Name="id_task" Type="uint" Nullable="false" />
+          <Property Name="id_technology" Type="uint" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="task_user">
+          <Key>
+            <PropertyRef Name="id_task" />
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_task" Type="uint" Nullable="false" />
+          <Property Name="id_user" Type="uint" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="tasks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="project_id" Type="uint" Nullable="false" />
+          <Property Name="start" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="end" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="status" Type="enum" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="technologies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="191" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="technology_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="technology_id" />
+          </Key>
+          <Property Name="user_id" Type="uint" Nullable="false" />
+          <Property Name="technology_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="uint" Nullable="false" />
+          <Property Name="comment" Type="text" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="image" Type="text" />
+          <Property Name="status" Type="enum" Nullable="false" />
+          <Property Name="remember_token" Type="varchar" MaxLength="100" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <Association Name="contacts_type_id_foreign">
+          <End Role="contact_types" Type="Self.contact_types" Multiplicity="1" />
+          <End Role="contacts" Type="Self.contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contacts">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="permission_role_permission_id_foreign">
+          <End Role="permissions" Type="Self.permissions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="permission_role" Type="Self.permission_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permissions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="permission_role">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="permission_role_role_id_foreign">
+          <End Role="roles" Type="Self.roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="permission_role" Type="Self.permission_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="permission_role">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_technology_id_project_foreign">
+          <End Role="projects" Type="Self.projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_technology" Type="Self.project_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_technology">
+              <PropertyRef Name="id_project" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_technology_id_technology_foreign">
+          <End Role="technologies" Type="Self.technologies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_technology" Type="Self.project_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="technologies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_technology">
+              <PropertyRef Name="id_technology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_user_id_project_foreign">
+          <End Role="projects" Type="Self.projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_user" Type="Self.project_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_user">
+              <PropertyRef Name="id_project" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_user_id_user_foreign">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_user" Type="Self.project_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_user">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="projects_clients_id_foreign">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="projects" Type="Self.projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="projects">
+              <PropertyRef Name="clients_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="role_user_role_id_foreign">
+          <End Role="roles" Type="Self.roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="role_user" Type="Self.role_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="role_user">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="role_user_user_id_foreign">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="role_user" Type="Self.role_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="role_user">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_comment_task_id_foreign">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_comment" Type="Self.task_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_comment">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_file_task_id_foreign">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_file" Type="Self.task_file" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_file">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_technology_id_task_foreign">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_technology" Type="Self.task_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_technology">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_technology_id_technology_foreign">
+          <End Role="technologies" Type="Self.technologies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_technology" Type="Self.task_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="technologies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_technology">
+              <PropertyRef Name="id_technology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_user_ibfk_1">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_user" Type="Self.task_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_user">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tasks_project_id_foreign">
+          <End Role="projects" Type="Self.projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tasks" Type="Self.tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tasks">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="technology_user_technology_id_foreign">
+          <End Role="technologies" Type="Self.technologies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="technology_user" Type="Self.technology_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="technologies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="technology_user">
+              <PropertyRef Name="technology_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="technology_user_user_id_foreign">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="technology_user" Type="Self.technology_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="technology_user">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_comment_user_id_foreign">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_comment" Type="Self.user_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_comment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="users_user_id_foreign">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="contacts" Type="Self.contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contacts">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sql3238345ModelStoreContainer">
+          <EntitySet Name="contact_types" EntityType="Self.contact_types" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="contacts" EntityType="Self.contacts" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="migrations" EntityType="Self.migrations" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="permission_role" EntityType="Self.permission_role" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="permissions" EntityType="Self.permissions" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="project_technology" EntityType="Self.project_technology" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="project_user" EntityType="Self.project_user" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="projects" EntityType="Self.projects" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="role_user" EntityType="Self.role_user" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="task_comment" EntityType="Self.task_comment" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="task_file" EntityType="Self.task_file" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="task_technology" EntityType="Self.task_technology" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="task_user" EntityType="Self.task_user" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="tasks" EntityType="Self.tasks" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="technologies" EntityType="Self.technologies" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="technology_user" EntityType="Self.technology_user" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="user_comment" EntityType="Self.user_comment" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="sql3238345" store:Type="Tables" />
+          <EntitySet Name="password_resets" EntityType="Self.password_resets" store:Type="Tables" store:Schema="sql3238345">
+            <DefiningQuery>SELECT
+`password_resets`.`email`, 
+`password_resets`.`token`, 
+`password_resets`.`created_at`
+FROM `password_resets` AS `password_resets`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="contacts_type_id_foreign" Association="Self.contacts_type_id_foreign">
+            <End Role="contact_types" EntitySet="contact_types" />
+            <End Role="contacts" EntitySet="contacts" />
+          </AssociationSet>
+          <AssociationSet Name="permission_role_permission_id_foreign" Association="Self.permission_role_permission_id_foreign">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="permission_role" EntitySet="permission_role" />
+          </AssociationSet>
+          <AssociationSet Name="permission_role_role_id_foreign" Association="Self.permission_role_role_id_foreign">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="permission_role" EntitySet="permission_role" />
+          </AssociationSet>
+          <AssociationSet Name="project_technology_id_project_foreign" Association="Self.project_technology_id_project_foreign">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="project_technology" EntitySet="project_technology" />
+          </AssociationSet>
+          <AssociationSet Name="project_technology_id_technology_foreign" Association="Self.project_technology_id_technology_foreign">
+            <End Role="technologies" EntitySet="technologies" />
+            <End Role="project_technology" EntitySet="project_technology" />
+          </AssociationSet>
+          <AssociationSet Name="project_user_id_project_foreign" Association="Self.project_user_id_project_foreign">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="project_user" EntitySet="project_user" />
+          </AssociationSet>
+          <AssociationSet Name="project_user_id_user_foreign" Association="Self.project_user_id_user_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="project_user" EntitySet="project_user" />
+          </AssociationSet>
+          <AssociationSet Name="projects_clients_id_foreign" Association="Self.projects_clients_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="projects" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="role_user_role_id_foreign" Association="Self.role_user_role_id_foreign">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="role_user" EntitySet="role_user" />
+          </AssociationSet>
+          <AssociationSet Name="role_user_user_id_foreign" Association="Self.role_user_user_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="role_user" EntitySet="role_user" />
+          </AssociationSet>
+          <AssociationSet Name="task_comment_task_id_foreign" Association="Self.task_comment_task_id_foreign">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="task_comment" EntitySet="task_comment" />
+          </AssociationSet>
+          <AssociationSet Name="task_file_task_id_foreign" Association="Self.task_file_task_id_foreign">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="task_file" EntitySet="task_file" />
+          </AssociationSet>
+          <AssociationSet Name="task_technology_id_task_foreign" Association="Self.task_technology_id_task_foreign">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="task_technology" EntitySet="task_technology" />
+          </AssociationSet>
+          <AssociationSet Name="task_technology_id_technology_foreign" Association="Self.task_technology_id_technology_foreign">
+            <End Role="technologies" EntitySet="technologies" />
+            <End Role="task_technology" EntitySet="task_technology" />
+          </AssociationSet>
+          <AssociationSet Name="task_user_ibfk_1" Association="Self.task_user_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="task_user" EntitySet="task_user" />
+          </AssociationSet>
+          <AssociationSet Name="tasks_project_id_foreign" Association="Self.tasks_project_id_foreign">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="tasks" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="technology_user_technology_id_foreign" Association="Self.technology_user_technology_id_foreign">
+            <End Role="technologies" EntitySet="technologies" />
+            <End Role="technology_user" EntitySet="technology_user" />
+          </AssociationSet>
+          <AssociationSet Name="technology_user_user_id_foreign" Association="Self.technology_user_user_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="technology_user" EntitySet="technology_user" />
+          </AssociationSet>
+          <AssociationSet Name="user_comment_user_id_foreign" Association="Self.user_comment_user_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="user_comment" EntitySet="user_comment" />
+          </AssociationSet>
+          <AssociationSet Name="users_user_id_foreign" Association="Self.users_user_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="contacts" EntitySet="contacts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sql3238345Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contact_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contact_type" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="contacts" Relationship="Self.contacts_type_id_foreign" FromRole="contact_types" ToRole="contacts" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_id" Type="Int64" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="contact_types" Relationship="Self.contacts_type_id_foreign" FromRole="contacts" ToRole="contact_types" />
+          <NavigationProperty Name="user" Relationship="Self.users_user_id_foreign" FromRole="contacts" ToRole="users" />
+        </EntityType>
+        <EntityType Name="migration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="migration1" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="batch" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="display_name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="roles" Relationship="Self.permission_role" FromRole="permissions" ToRole="roles" />
+        </EntityType>
+        <EntityType Name="project_technology">
+          <Key>
+            <PropertyRef Name="id_project" />
+            <PropertyRef Name="id_technology" />
+          </Key>
+          <Property Name="id_project" Type="Int64" Nullable="false" />
+          <Property Name="id_technology" Type="Int64" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="project" Relationship="Self.project_technology_id_project_foreign" FromRole="project_technology" ToRole="projects" />
+          <NavigationProperty Name="technology" Relationship="Self.project_technology_id_technology_foreign" FromRole="project_technology" ToRole="technologies" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="clients_id" Type="Int64" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="project_technology" Relationship="Self.project_technology_id_project_foreign" FromRole="projects" ToRole="project_technology" />
+          <NavigationProperty Name="user" Relationship="Self.projects_clients_id_foreign" FromRole="projects" ToRole="users" />
+          <NavigationProperty Name="tasks" Relationship="Self.tasks_project_id_foreign" FromRole="projects" ToRole="tasks" />
+          <NavigationProperty Name="users" Relationship="Self.project_user" FromRole="projects" ToRole="users" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="display_name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="permissions" Relationship="Self.permission_role" FromRole="roles" ToRole="permissions" />
+          <NavigationProperty Name="users" Relationship="Self.role_user" FromRole="roles" ToRole="users" />
+        </EntityType>
+        <EntityType Name="task_comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="Int64" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="task" Relationship="Self.task_comment_task_id_foreign" FromRole="task_comment" ToRole="tasks" />
+        </EntityType>
+        <EntityType Name="task_file">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="Int64" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="task" Relationship="Self.task_file_task_id_foreign" FromRole="task_file" ToRole="tasks" />
+        </EntityType>
+        <EntityType Name="task_technology">
+          <Key>
+            <PropertyRef Name="id_task" />
+            <PropertyRef Name="id_technology" />
+          </Key>
+          <Property Name="id_task" Type="Int64" Nullable="false" />
+          <Property Name="id_technology" Type="Int64" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="task" Relationship="Self.task_technology_id_task_foreign" FromRole="task_technology" ToRole="tasks" />
+          <NavigationProperty Name="technology" Relationship="Self.task_technology_id_technology_foreign" FromRole="task_technology" ToRole="technologies" />
+        </EntityType>
+        <EntityType Name="task_user">
+          <Key>
+            <PropertyRef Name="id_task" />
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_task" Type="Int64" Nullable="false" />
+          <Property Name="id_user" Type="Int64" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="user" Relationship="Self.task_user_ibfk_1" FromRole="task_user" ToRole="users" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="project_id" Type="Int64" Nullable="false" />
+          <Property Name="start" Type="DateTime" Nullable="false" />
+          <Property Name="end" Type="DateTime" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="project" Relationship="Self.tasks_project_id_foreign" FromRole="tasks" ToRole="projects" />
+          <NavigationProperty Name="task_comment" Relationship="Self.task_comment_task_id_foreign" FromRole="tasks" ToRole="task_comment" />
+          <NavigationProperty Name="task_file" Relationship="Self.task_file_task_id_foreign" FromRole="tasks" ToRole="task_file" />
+          <NavigationProperty Name="task_technology" Relationship="Self.task_technology_id_task_foreign" FromRole="tasks" ToRole="task_technology" />
+        </EntityType>
+        <EntityType Name="technology">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="project_technology" Relationship="Self.project_technology_id_technology_foreign" FromRole="technologies" ToRole="project_technology" />
+          <NavigationProperty Name="task_technology" Relationship="Self.task_technology_id_technology_foreign" FromRole="technologies" ToRole="task_technology" />
+          <NavigationProperty Name="users" Relationship="Self.technology_user" FromRole="technologies" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user_comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int64" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="user" Relationship="Self.user_comment_user_id_foreign" FromRole="user_comment" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="remember_token" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <NavigationProperty Name="contacts" Relationship="Self.users_user_id_foreign" FromRole="users" ToRole="contacts" />
+          <NavigationProperty Name="projects" Relationship="Self.projects_clients_id_foreign" FromRole="users" ToRole="projects" />
+          <NavigationProperty Name="task_user" Relationship="Self.task_user_ibfk_1" FromRole="users" ToRole="task_user" />
+          <NavigationProperty Name="user_comment" Relationship="Self.user_comment_user_id_foreign" FromRole="users" ToRole="user_comment" />
+          <NavigationProperty Name="projects1" Relationship="Self.project_user" FromRole="users" ToRole="projects" />
+          <NavigationProperty Name="roles" Relationship="Self.role_user" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="technologies" Relationship="Self.technology_user" FromRole="users" ToRole="technologies" />
+        </EntityType>
+        <EntityType Name="password_resets">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="token" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+        </EntityType>
+        <Association Name="contacts_type_id_foreign">
+          <End Role="contact_types" Type="Self.contact_types" Multiplicity="1" />
+          <End Role="contacts" Type="Self.contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contacts">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="users_user_id_foreign">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="contacts" Type="Self.contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contacts">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_technology_id_project_foreign">
+          <End Role="projects" Type="Self.project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_technology" Type="Self.project_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_technology">
+              <PropertyRef Name="id_project" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_technology_id_technology_foreign">
+          <End Role="technologies" Type="Self.technology" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_technology" Type="Self.project_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="technologies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_technology">
+              <PropertyRef Name="id_technology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="projects_clients_id_foreign">
+          <End Role="users" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="projects" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="projects">
+              <PropertyRef Name="clients_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tasks_project_id_foreign">
+          <End Role="projects" Type="Self.project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tasks" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tasks">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_comment_task_id_foreign">
+          <End Role="tasks" Type="Self.task" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_comment" Type="Self.task_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_comment">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_file_task_id_foreign">
+          <End Role="tasks" Type="Self.task" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_file" Type="Self.task_file" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_file">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_technology_id_task_foreign">
+          <End Role="tasks" Type="Self.task" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_technology" Type="Self.task_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_technology">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_technology_id_technology_foreign">
+          <End Role="technologies" Type="Self.technology" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_technology" Type="Self.task_technology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="technologies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_technology">
+              <PropertyRef Name="id_technology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_user_ibfk_1">
+          <End Role="users" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task_user" Type="Self.task_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_user">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_comment_user_id_foreign">
+          <End Role="users" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_comment" Type="Self.user_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_comment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="permission_role">
+          <End Role="permissions" Type="Self.permission" Multiplicity="*" />
+          <End Role="roles" Type="Self.role" Multiplicity="*" />
+        </Association>
+        <Association Name="project_user">
+          <End Role="projects" Type="Self.project" Multiplicity="*" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <Association Name="role_user">
+          <End Role="roles" Type="Self.role" Multiplicity="*" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <Association Name="technology_user">
+          <End Role="technologies" Type="Self.technology" Multiplicity="*" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="sql3238345Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contact_types" EntityType="Self.contact_types" />
+          <EntitySet Name="contacts" EntityType="Self.contact" />
+          <EntitySet Name="migrations" EntityType="Self.migration" />
+          <EntitySet Name="permissions" EntityType="Self.permission" />
+          <EntitySet Name="project_technology" EntityType="Self.project_technology" />
+          <EntitySet Name="projects" EntityType="Self.project" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="task_comment" EntityType="Self.task_comment" />
+          <EntitySet Name="task_file" EntityType="Self.task_file" />
+          <EntitySet Name="task_technology" EntityType="Self.task_technology" />
+          <EntitySet Name="task_user" EntityType="Self.task_user" />
+          <EntitySet Name="tasks" EntityType="Self.task" />
+          <EntitySet Name="technologies" EntityType="Self.technology" />
+          <EntitySet Name="user_comment" EntityType="Self.user_comment" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="password_resets" EntityType="Self.password_resets" />
+          <AssociationSet Name="contacts_type_id_foreign" Association="Self.contacts_type_id_foreign">
+            <End Role="contact_types" EntitySet="contact_types" />
+            <End Role="contacts" EntitySet="contacts" />
+          </AssociationSet>
+          <AssociationSet Name="users_user_id_foreign" Association="Self.users_user_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="contacts" EntitySet="contacts" />
+          </AssociationSet>
+          <AssociationSet Name="project_technology_id_project_foreign" Association="Self.project_technology_id_project_foreign">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="project_technology" EntitySet="project_technology" />
+          </AssociationSet>
+          <AssociationSet Name="project_technology_id_technology_foreign" Association="Self.project_technology_id_technology_foreign">
+            <End Role="technologies" EntitySet="technologies" />
+            <End Role="project_technology" EntitySet="project_technology" />
+          </AssociationSet>
+          <AssociationSet Name="projects_clients_id_foreign" Association="Self.projects_clients_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="projects" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="tasks_project_id_foreign" Association="Self.tasks_project_id_foreign">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="tasks" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_comment_task_id_foreign" Association="Self.task_comment_task_id_foreign">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="task_comment" EntitySet="task_comment" />
+          </AssociationSet>
+          <AssociationSet Name="task_file_task_id_foreign" Association="Self.task_file_task_id_foreign">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="task_file" EntitySet="task_file" />
+          </AssociationSet>
+          <AssociationSet Name="task_technology_id_task_foreign" Association="Self.task_technology_id_task_foreign">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="task_technology" EntitySet="task_technology" />
+          </AssociationSet>
+          <AssociationSet Name="task_technology_id_technology_foreign" Association="Self.task_technology_id_technology_foreign">
+            <End Role="technologies" EntitySet="technologies" />
+            <End Role="task_technology" EntitySet="task_technology" />
+          </AssociationSet>
+          <AssociationSet Name="task_user_ibfk_1" Association="Self.task_user_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="task_user" EntitySet="task_user" />
+          </AssociationSet>
+          <AssociationSet Name="user_comment_user_id_foreign" Association="Self.user_comment_user_id_foreign">
+            <End Role="users" EntitySet="users" />
+            <End Role="user_comment" EntitySet="user_comment" />
+          </AssociationSet>
+          <AssociationSet Name="permission_role" Association="Self.permission_role">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
+          <AssociationSet Name="project_user" Association="Self.project_user">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="role_user" Association="Self.role_user">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="technology_user" Association="Self.technology_user">
+            <End Role="technologies" EntitySet="technologies" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sql3238345ModelStoreContainer" CdmEntityContainer="sql3238345Entities">
+          <EntitySetMapping Name="contact_types">
+            <EntityTypeMapping TypeName="sql3238345Model.contact_types">
+              <MappingFragment StoreEntitySet="contact_types">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contact_type" ColumnName="contact_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="sql3238345Model.contact">
+              <MappingFragment StoreEntitySet="contacts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="migrations">
+            <EntityTypeMapping TypeName="sql3238345Model.migration">
+              <MappingFragment StoreEntitySet="migrations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="migration1" ColumnName="migration" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permissions">
+            <EntityTypeMapping TypeName="sql3238345Model.permission">
+              <MappingFragment StoreEntitySet="permissions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="display_name" ColumnName="display_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_technology">
+            <EntityTypeMapping TypeName="sql3238345Model.project_technology">
+              <MappingFragment StoreEntitySet="project_technology">
+                <ScalarProperty Name="id_project" ColumnName="id_project" />
+                <ScalarProperty Name="id_technology" ColumnName="id_technology" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projects">
+            <EntityTypeMapping TypeName="sql3238345Model.project">
+              <MappingFragment StoreEntitySet="projects">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="clients_id" ColumnName="clients_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="sql3238345Model.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="display_name" ColumnName="display_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task_comment">
+            <EntityTypeMapping TypeName="sql3238345Model.task_comment">
+              <MappingFragment StoreEntitySet="task_comment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task_id" ColumnName="task_id" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task_file">
+            <EntityTypeMapping TypeName="sql3238345Model.task_file">
+              <MappingFragment StoreEntitySet="task_file">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="task_id" ColumnName="task_id" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task_technology">
+            <EntityTypeMapping TypeName="sql3238345Model.task_technology">
+              <MappingFragment StoreEntitySet="task_technology">
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="id_technology" ColumnName="id_technology" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task_user">
+            <EntityTypeMapping TypeName="sql3238345Model.task_user">
+              <MappingFragment StoreEntitySet="task_user">
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tasks">
+            <EntityTypeMapping TypeName="sql3238345Model.task">
+              <MappingFragment StoreEntitySet="tasks">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="end" ColumnName="end" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="technologies">
+            <EntityTypeMapping TypeName="sql3238345Model.technology">
+              <MappingFragment StoreEntitySet="technologies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_comment">
+            <EntityTypeMapping TypeName="sql3238345Model.user_comment">
+              <MappingFragment StoreEntitySet="user_comment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="sql3238345Model.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="remember_token" ColumnName="remember_token" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="password_resets">
+            <EntityTypeMapping TypeName="sql3238345Model.password_resets">
+              <MappingFragment StoreEntitySet="password_resets">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="permission_role" TypeName="sql3238345Model.permission_role" StoreEntitySet="permission_role">
+            <EndProperty Name="permissions">
+              <ScalarProperty Name="id" ColumnName="permission_id" />
+            </EndProperty>
+            <EndProperty Name="roles">
+              <ScalarProperty Name="id" ColumnName="role_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="project_user" TypeName="sql3238345Model.project_user" StoreEntitySet="project_user">
+            <EndProperty Name="projects">
+              <ScalarProperty Name="id" ColumnName="id_project" />
+            </EndProperty>
+            <EndProperty Name="users">
+              <ScalarProperty Name="id" ColumnName="id_user" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="role_user" TypeName="sql3238345Model.role_user" StoreEntitySet="role_user">
+            <EndProperty Name="roles">
+              <ScalarProperty Name="id" ColumnName="role_id" />
+            </EndProperty>
+            <EndProperty Name="users">
+              <ScalarProperty Name="id" ColumnName="user_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="technology_user" TypeName="sql3238345Model.technology_user" StoreEntitySet="technology_user">
+            <EndProperty Name="technologies">
+              <ScalarProperty Name="id" ColumnName="technology_id" />
+            </EndProperty>
+            <EndProperty Name="users">
+              <ScalarProperty Name="id" ColumnName="user_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

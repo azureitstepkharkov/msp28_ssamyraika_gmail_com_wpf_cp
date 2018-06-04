@@ -1,0 +1,22 @@
+﻿<Window x:Class="LaravelAdminMysql.Forms.FormAddRoleForUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaravelAdminMysql.Forms"
+        mc:Ignorable="d"
+        Title="FormAddRoleForUser" Height="178.5" Width="270.5">
+    <Grid>
+        <StackPanel>
+            <Label Margin="23 23 23 0">Select new role:</Label>
+            <ComboBox x:Name="roleComboBox" DisplayMemberPath="name" Width="210" Height="23" Margin="20 5 20 20">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Button Name="SaveUser" Click="SaveUser_Click" Content="Add role" Width="70"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,4 @@
+user_admin@gmail.com - пользователь с правами админа
+User_client@gmail.com - пользователь с правами клиента
+Пароль: 123456
+Хостинг сайта на https://ssamyraika.000webhostapp.com

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1e73ff58154e4db3b58400bd5904e0a7" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="sql3238345Model.contact_types" Width="1.5" PointX="6.375" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.contact" Width="1.5" PointX="4.375" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.migration" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.permission" Width="1.5" PointX="2.625" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.project_technology" Width="1.5" PointX="4.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.project" Width="1.5" PointX="8.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.role" Width="1.5" PointX="0.625" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.task_comment" Width="1.5" PointX="12.875" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.task_file" Width="1.5" PointX="13" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.task_technology" Width="1.5" PointX="0.625" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.task_user" Width="1.5" PointX="8.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.task" Width="1.5" PointX="10.625" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.technology" Width="1.5" PointX="2.625" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.user_comment" Width="1.5" PointX="11" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.user" Width="1.5" PointX="6.375" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sql3238345Model.password_resets" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="sql3238345Model.contacts_type_id_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.users_user_id_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.project_technology_id_project_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.project_technology_id_technology_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.projects_clients_id_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.tasks_project_id_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.task_comment_task_id_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.task_file_task_id_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.task_technology_id_task_foreign" ManuallyRouted="false" ></AssociationConnector>
+        <AssociationConnector Association="sql3238345Model.task_technology_id_technology_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.task_user_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.user_comment_user_id_foreign" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.permission_role" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.project_user" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.role_user" ManuallyRouted="false" />
+        <AssociationConnector Association="sql3238345Model.technology_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
